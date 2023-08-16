@@ -1,0 +1,40 @@
+{
+  "manifest_version": 2,
+  "name": "V8 interceptor",
+  "description": "Modifies a specific HTTP request header",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "webRequest",
+    "webRequestBlocking",
+    "extraHeaders",
+    "http://localhost:9090/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {}
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
+      "css": ["index.css"]
+    }
+  ],
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
+
+  "web_accessible_resources": ["index.js"]
+}
